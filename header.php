@@ -15,7 +15,7 @@
                     <li><a href="about-page.php" class="nav-link px-2 text-white">About Us</a></li>
                     <li><a href="contact-us.php" class="nav-link px-2 text-white">Contact Us</a></li>
                     <li><a href="services.php" class="nav-link px-2 text-white">Types of Services</a></li>
-                    <!-- <li><a href="#" class="nav-link px-2 text-white">Reviews</a></li> -->
+                    <li><a href="reviews.php" class="nav-link px-2 text-white">Reviews</a></li>
                 </ul>
 
                 <div class="text-end">
