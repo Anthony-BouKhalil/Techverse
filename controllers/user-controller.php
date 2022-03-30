@@ -8,7 +8,9 @@ class UserController
     }
 
     public function createUser($email, $name, $password, $phone, $address, $city_code) {
-        $query = "INSERT INTO user (email, name, password, tel_no, address, city_code) VALUES ('$email', '$name', '$password', '$phone', '$address', '$city_code')";
+        $salt = random_bytes(20);
+        $password_hash = md5($password . $salt);
+        $query = "INSERT INTO user (email, name, password_hash, salt, tel_no, address, city_code) VALUES ('$email', '$name', '$password_hash', '$salt', '$phone', '$address', '$city_code')";
         $result = mysqli_query($this->dbcon, $query);
         return $result;
     }
@@ -24,7 +26,16 @@ class UserController
     }
 
     public function signIn($email, $password) {
-        $query = "SELECT name, user_id FROM user WHERE email='$email' AND password='$password'";
+        $query = "SELECT salt FROM user WHERE email='$email'";
+        $result = mysqli_query($this->dbcon, $query);
+        if (mysqli_num_rows($result) == 0) {
+            return false;
+        }
+        $row = $result->fetch_array(MYSQLI_ASSOC);
+        $salt = $row['salt'];
+        $password_hash = md5($password . $salt);
+
+        $query = "SELECT name, user_id FROM user WHERE email='$email' AND password_hash='$password_hash'";
         $result = mysqli_query($this->dbcon, $query);
         $row_cnt = mysqli_num_rows($result);
 
