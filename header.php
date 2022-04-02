@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<body>
     <header class="p-3 bg-dark text-white">
         <div class="header-container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -11,8 +10,8 @@
                     <div class="logo-container">
                         <img width="40" height="40" src="images/techverse-logo.png"></img>
                     </div>
-                    <li><a href="index.php" class="nav-link px-2 text-white">Home</a></li>
-                    <li><a href="about-page.php" class="nav-link px-2 text-white">About Us</a></li>
+                    <li><a href="#/!" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="#!aboutus" class="nav-link px-2 text-white">About Us</a></li>
                     <li><a href="contact-us.php" class="nav-link px-2 text-white">Contact Us</a></li>
                     <li><a href="services.php" class="nav-link px-2 text-white">Types of Services</a></li>
                     <li><a href="reviews.php" class="nav-link px-2 text-white">Reviews</a></li>
@@ -42,4 +41,3 @@
             </div>
         </div>
     </header>
-</body>

@@ -23,4 +23,16 @@ class ProductController
         return mysqli_query($this->dbcon, $query);
     }
 }
+
+$conn = mysqli_connect('localhost', 'root', '', 'scsstore');
+$controller = new ProductController($conn);
+$result = $controller->selectAll();
+
+$products = array();
+while($row = mysqli_fetch_assoc($result)) {
+    array_push($products, $row);
+}
+$data = mb_convert_encoding($products,'UTF-8', 'UTF-8');
+echo json_encode($data);
+
 ?>
