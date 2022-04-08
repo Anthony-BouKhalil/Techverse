@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +39,24 @@
             font-size: 3.5rem;
           }
         }
+        #devices th, #devices td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        #devices {
+            margin-top: 18px;
+            margin-right: 18px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: center;
+        }
     </style>
 </head>
 <body ng-app="SCSStore">
-    <?php
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-        if(empty($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
-        }
-
-        if (isset($_POST['add']) && !in_array($_POST['add'], $_SESSION['cart'])){
-            array_push($_SESSION["cart"], $_POST['add']);
-        }
-    ?>
     <?php require 'header.php' ?>
     <div ng-view></div>
     <h3 id="browser" style="text-align: center;"></h3>

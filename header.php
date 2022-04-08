@@ -19,7 +19,7 @@
 
                 <div class="text-end">
                     <button type='button' class='btn btn-outline-light me-2' data-bs-toggle="modal" data-bs-target="#searchModal">Search</button>
-                    <a href='shopping-cart.php'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
+                    <a href='#!shopping-cart'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
                     <?php
                       if (isset($_SESSION['user'])) {
                         echo 

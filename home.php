@@ -1,3 +1,8 @@
+<?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+?>
 <body ng-controller="HomeController">
 <div class="center">
     <div class="dropdown">
@@ -12,6 +17,7 @@
         <li><a class="dropdown-item" href="" ng-click="type='accessories'">Accessories</a></li>
     </ul>
     <?php
+    
     if (isset($_SESSION['user'])) {
         if ($_SESSION['user']== 'Admin')
         echo "<a href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
@@ -38,9 +44,7 @@
                 <p class='card-text'> {{ product.description }} </p>
                 <div class='d-flex justify-content-between align-items-center'>
                 <div class='btn-group'>
-                    <form action='index.php' method='POST'>
-                        <button type='submit' name='add' class='btn btn-sm btn-outline-secondary'  value='" {{ product.product_id }} "'>Add to Cart</button>
-                    </form>
+                    <button class='btn btn-sm btn-outline-secondary' ng-click='addToCart(product.product_id)'>Add to Cart</button>
                 </div>
                     <small class='text-muted'> ${{ product.unit_price }} CAD</small>
                 </div>
