@@ -31,11 +31,25 @@
         }
 
         if (isset($_POST['add']) && !in_array($_POST['add'], $_SESSION['cart'])){
-                array_push($_SESSION["cart"], $_POST['add']);
+            array_push($_SESSION["cart"], $_POST['add']);
         }
     ?>
     <?php require 'header.php' ?>
     <div ng-view></div>
+    <h3 id="browser" style="text-align: center;"></h3>
+    <script>
+            let agent = navigator.userAgent;
+            let browser = "";
+            if (navigator.userAgent.indexOf("Edg") != -1 ) {
+                browser = "Edge";
+            } else if (navigator.userAgent.indexOf("Chrome") != -1){
+                browser = "Chrome";
+            } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+                browser = "Firefox"
+            }
+            document.getElementById("browser").innerHTML = "You are currently using: " + browser;
+    </script>
+    </script>
     <?php require 'footer.php' ?>
     <script src="js/app.js"></script>
 </body>
