@@ -67,7 +67,7 @@
         }
         document.getElementById("btn5").onclick = function () {
             document.getElementById("render1").innerHTML = 
-            "Enter your shipping and payments details and click 'Continue to Checkout' to complete your purchase. <br>" +
+            "Enter your shipping and payment details and click 'Continue to Checkout' to complete your purchase. <br>" +
             "After you will be able to review your invoice and click 'Confirm Purchase' to place your order.";
         }
         document.getElementById("btn6").onclick = function () {
