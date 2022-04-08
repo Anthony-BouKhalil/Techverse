@@ -33,7 +33,7 @@
                 <img width='100%' height='100%' alt='{{product.name}}' src='{{product.image}}'/>
                 <div class='card-body'>
                 <div class='card-title'>
-                    {{ product.name }}
+                    <b>{{ product.name }}</b>
                 </div>
                 <p class='card-text'> {{ product.description }} </p>
                 <div class='d-flex justify-content-between align-items-center'>
