@@ -21,6 +21,18 @@
     </style>
 </head>
 <body ng-app="SCSStore">
+    <?php
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if(empty($_SESSION['cart'])) {
+            $_SESSION['cart'] = array();
+        }
+
+        if (isset($_POST['add']) && !in_array($_POST['add'], $_SESSION['cart'])){
+                array_push($_SESSION["cart"], $_POST['add']);
+        }
+    ?>
     <?php require 'header.php' ?>
     <div ng-view></div>
     <?php require 'footer.php' ?>

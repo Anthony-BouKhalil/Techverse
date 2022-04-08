@@ -1,9 +1,3 @@
-<?php
-//require 'controllers/product-controller.php';
-if (!isset($_SESSION)) {
-    session_start();
-}
-?>
 <body ng-controller="HomeController">
 <div class="center">
     <div class="dropdown">
@@ -25,83 +19,34 @@ if (!isset($_SESSION)) {
                 db Maintain
                 </button>
                 </a>";
-    }       
+    }   
     ?>
     </div>
 </div>
-
-<table>
-<tr ng-repeat="product in products | filter:{type:type}">
-    <td>{{product.name}}</td>
-</tr>
-</table>
-
-<!--<div class="album py-3 bg-light">
+    
+<div class="album py-3 bg-light">
     <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">--!>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div ng-repeat="product in products | filter:{type:type}">
+        <div class='col'>
+            <div class='card shadow-sm'>
+                <img width='100%' height='100%' alt='{{product.name}}' src='{{product.image}}'/>
+                <div class='card-body'>
+                <div class='card-title'>
+                    {{ product.name }}
+                </div>
+                <p class='card-text'> {{ product.description }} </p>
+                <div class='d-flex justify-content-between align-items-center'>
+                <div class='btn-group'>
+                    <form action='index.php' method='POST'>
+                        <button type='submit' name='add' class='btn btn-sm btn-outline-secondary'  value='" {{ product.product_id }} "'>Add to Cart</button>
+                    </form>
+                </div>
+                    <small class='text-muted'> ${{ product.unit_price }} CAD</small>
+                </div>
+        </div>
+    </div>
+    </div>
+</div>
 </body>
 
-    <?php
-        if(empty($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
-        }
-
-        if (isset($_POST['add'])) {
-            if (!in_array($_POST['add'], $_SESSION['cart'])){
-                array_push($_SESSION["cart"], $_POST['add']);
-            }
-        }
-
-        /*$conn = mysqli_connect('localhost', 'root', '', 'scsstore');
-        $controller = new ProductController($conn);
-        $result;
-        
-        $types = array("phones", "laptops", "tablets", "accessories");
-        if (isset($_GET['fn']) && in_array($_GET['fn'], $types)) {
-            $result = $controller->filter($_GET['fn']);
-        } 
-        else {
-            $result = $controller->selectAll();
-        }
-
-        $i = 0;
-        while($row = mysqli_fetch_assoc($result)) {
-            $i = $i + 1;
-            $id = $row["product_id"];
-            $name = $row["name"];
-            $address = $row["image"];
-            $pic = "<img width='100%' height='100%' alt='$name' src='$address'/>";
-            $type = $row["type"];
-            $price = $row["unit_price"];
-            $description = $row["description"];
-
-            echo "<div class='col'>";
-            echo "<div class='card shadow-sm'>";
-            echo $pic;
-                echo "<div class='card-body'>";
-                echo "<div class='card-title'>";
-                    echo $name;
-                echo "</div>";
-                echo "<p class='card-text'>" . $description . "</p>";
-                echo "<div class='d-flex justify-content-between align-items-center'>";
-                echo "<div class='btn-group'>";
-                    echo "<form action='index.php' method='POST'>";
-                    $id = $row['product_id'];
-                    echo "<button type='submit' name='add' class='btn btn-sm btn-outline-secondary'  value='" . $id . "'>Add to Cart</button>";
-                    echo "</form>";
-                    echo "</div>";
-                    echo "<small class='text-muted'>$" . $price . " CAD</small>";
-                echo "</div>";
-                echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            if ($i % 3 == 0) {
-                echo "</div>";
-                echo "</div>";
-                echo "<div class='album py-3 bg-light'>";
-                echo "<div class='container'>";
-                echo "<div class='row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3'>";
-            
-            }
-        }*/
-    ?>
