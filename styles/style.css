@@ -1,0 +1,80 @@
+.timer{
+    width: 100%;
+}
+
+.a{
+    display: flex;
+    justify-content: center;
+}
+
+.b{
+    display: flex;
+    justify-content: center;
+}
+
+.c{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    border-style: solid;
+    border-width: 1px;
+    background-color: rgb(223, 223, 223);
+    position: fixed;
+    bottom: 0px;
+    right: 5px;
+}
+
+.sale-text{
+    font-size: 22px;
+}
+
+/* Chat UI Box */
+
+.chat-ui-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.render-output-field{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+}
+
+.render-container{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn{
+    margin: 5px;
+    margin-bottom: 10px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #c1c1c1;
+}
+
+.show-btn{
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.show-btn:hover{
+    background-color: #c1c1c1;
+    cursor: pointer;
+}
