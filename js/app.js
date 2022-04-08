@@ -5,8 +5,11 @@ app.config(function($routeProvider) {
             templateUrl : 'home.php',
             controller : 'HomeController'})
         .when('/aboutus', {
-            templateUrl : 'about-page.php',
-            controller : 'AboutusController'})
+            templateUrl : 'about-page.php'})
+        .when('/contactus', {
+            templateUrl : 'contact-us.php'})
+        .when('/services', {
+            templateUrl : 'services.php'})
         .when('/reviews', {
             templateUrl : 'reviews.php',
             controller : 'ReviewsController'})
@@ -18,11 +21,9 @@ app.controller('HomeController', function($scope, $http) {
         .then(function (res) {
         $scope.products = res.data;
     });
-    $scope.filter = 'none';
+    $scope.filter = '';
 }
 );
-app.controller('AboutusController', function($scope) {
-    $scope.message = 'Hello from AboutusController';});
 app.controller('ReviewsController', function($scope, $http) {
     $http.get("php/reviews-data.php")
         .then(function (res) {

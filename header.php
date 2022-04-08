@@ -10,9 +10,9 @@
                     <div class="logo-container">
                         <img width="40" height="40" src="images/techverse-logo.png"></img>
                     </div>
-                    <li><a href="#/!" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="#!" class="nav-link px-2 text-white">Home</a></li>
                     <li><a href="#!aboutus" class="nav-link px-2 text-white">About Us</a></li>
-                    <li><a href="#!contact-us" class="nav-link px-2 text-white">Contact Us</a></li>
+                    <li><a href="#!contactus" class="nav-link px-2 text-white">Contact Us</a></li>
                     <li><a href="#!services" class="nav-link px-2 text-white">Types of Services</a></li>
                     <li><a href="#!reviews" class="nav-link px-2 text-white">Reviews</a></li>
                 </ul>
