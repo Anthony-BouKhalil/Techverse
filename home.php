@@ -1,8 +1,3 @@
-<?php
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-?>
 <body ng-controller="HomeController">
 <div class="center">
     <div class="dropdown">

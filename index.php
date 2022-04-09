@@ -54,6 +54,17 @@ if (!isset($_SESSION)) {
         th, td {
             text-align: center;
         }
+
+        .review {
+            vertical-align: top;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .review-row {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body ng-app="SCSStore">

@@ -8,7 +8,7 @@ class ReviewsController
     }
 
     public function insert($product_id, $review, $rating) {
-        $query = "INSERT INTO review (product_id, review, rating) VALUES ('$product_id', '$review', '$rating')";
+        $query = "INSERT INTO review (product_id, text, stars) VALUES ('$product_id', '$review', '$rating')";
         mysqli_query($this->dbcon, $query);
     }
 

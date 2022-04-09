@@ -1,7 +1,4 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
 require_once 'controllers/product-controller.php';
 ?>
 <body ng-controller="CartController">

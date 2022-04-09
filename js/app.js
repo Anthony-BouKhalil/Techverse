@@ -38,10 +38,24 @@ app.controller('HomeController', function($scope, $http) {
 }
 );
 app.controller('ReviewsController', function($scope, $http) {
-    $http.get("php/reviews-data.php")
+    $http.get("php/reviews-data.php?action=list")
         .then(function (res) {
-            $scope.reviews = res.data;
+            $scope.products = res.data;
         });
+    $scope.submit = function() {
+        if ($scope.review) {
+            var request = $http({
+                method: "post",
+                url: "php/reviews-data.php?action=insert",
+                data: $scope.review
+            });
+            delete $scope.review;
+            $http.get("php/reviews-data.php?action=list")
+                .then(function (res) {
+                    $scope.products = res.data;
+                });
+        }
+    }
 });
 app.controller('CartController', function($scope, $http) {
     $http.get("php/cart.php?action=list")
