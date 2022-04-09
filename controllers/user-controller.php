@@ -24,6 +24,10 @@ class UserController
     }
 
     public function signIn($email, $password) {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
         $query = "SELECT name, user_id FROM user WHERE email='$email' AND password='$password'";
         $result = mysqli_query($this->dbcon, $query);
         $row_cnt = mysqli_num_rows($result);
@@ -32,8 +36,7 @@ class UserController
             $row = $result->fetch_array(MYSQLI_ASSOC);
             $_SESSION['user'] = $row['name'];
             $_SESSION['userId'] = $row['user_id'];
-            header("Location: index.php");
-            return true;
+            return $_SESSION['user'];
         } else {
             return false;
         }

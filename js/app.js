@@ -1,4 +1,10 @@
 var app = angular.module('SCSStore', ['ngRoute']);
+/*app.run(function($rootScope, $http) {
+    $http.get("php/current_user.php")
+        .then(function (res) {
+            $rootScope.user = res.data[0];
+       });
+});*/
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -16,6 +22,9 @@ app.config(function($routeProvider) {
         .when('/shopping-cart', {
             templateUrl: 'shopping-cart.php',
             controller : 'CartController'})
+        .when('/sign-in', {
+            templateUrl: 'sign-in.php',
+            controller : 'SignInController'})
         .otherwise({redirectTo: '/'});
 });
 
@@ -70,5 +79,24 @@ app.controller('CartController', function($scope, $http) {
             data: data
         });
         $scope.cart.splice($scope.cart.findIndex(product => product.product_id === product_id), 1);
+    }
+});
+app.controller('SignInController', function($scope, $http) {
+    $scope.submit = function() {
+        if ($scope.user) {
+            var request = $http({
+                method: "post",
+                url: "php/sign-in-submit.php",
+                data: $scope.user
+            }).then(function (res) {
+                if (res.data[0] === false) {
+                    $scope.errCredentials = "The login credentials you entered are incorrect";
+                }
+                else {
+                   //$rootScope.user = res.data[0];
+                   window.location.href = "#!";
+                }
+            });
+        }
     }
 });
