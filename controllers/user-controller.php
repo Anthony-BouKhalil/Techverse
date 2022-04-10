@@ -26,6 +26,9 @@ class UserController
     }
 
     public function signIn($email, $password) {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $query = "SELECT salt FROM user WHERE email='$email'";
         $result = mysqli_query($this->dbcon, $query);
         if (mysqli_num_rows($result) == 0) {
