@@ -39,21 +39,19 @@
         <div class="col-sm-12">
           <?php 
             echo '<textarea ng-model="review.text" ng-required="true" id="inputReview" class="form-control" name="review" rows="10"></textarea>';
-            echo "<font color='red'>".$errReview."</font>";
           ?>
         </div>
       </div>
       <?php
-        //if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['user'])) {
             echo "<div class='form-group row'>
                   <div class='offset-sm-3 col-sm-6'>
                     <input type='submit' value='Submit' name='submit' class='btn btn-primary'/>
                   </div>
                   </div>";
-          //}
-          //else {
-          //      echo "<font color='red'>You must be signed in to checkout</font>";
-          //}
+        } else {
+          echo "<font color='red'>You must be signed in to checkout</font>";
+        }
       ?>
     </form>
 </div>

@@ -34,7 +34,7 @@
                       }
                       else {
                         echo "<a href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>";
-                        echo "<a href='sign-up.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>";
+                        echo "<a href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>";
                       }
                     ?>
                 </div>
