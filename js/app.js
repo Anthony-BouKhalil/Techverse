@@ -25,6 +25,9 @@ app.config(function($routeProvider) {
         .when('/sign-in', {
             templateUrl: 'sign-in.php',
             controller : 'SignInController'})
+        .when('/sign-up', {
+            templateUrl: 'sign-in.php',
+            controller : 'SignInController'})
         .otherwise({redirectTo: '/'});
 });
 
@@ -94,7 +97,29 @@ app.controller('SignInController', function($scope, $http) {
                 }
                 else {
                    //$rootScope.user = res.data[0];
-                   window.location.href = "#!";
+                   window.location.href = "index";
+                   //window.location.reload();/
+                }
+            });
+        }
+    }
+});
+app.controller('SignUpController', function($scope, $http) {
+    $scope.submit = function() {
+        if ($scope.user) {
+            var request = $http({
+                method: "post",
+                url: "php/sign-up-submit.php",
+                data: $scope.user
+            }).then(function (res) {
+                if (res.data["success"] === false) {
+                    $scope.errEmail = res.data["email"];
+                    $scope.errPassword = res.data["password"];
+                }
+                else {
+                   //$rootScope.user = res.data[0];
+                   window.location.href = "index";
+                   //window.location.reload();/
                 }
             });
         }

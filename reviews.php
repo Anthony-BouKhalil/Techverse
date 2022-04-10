@@ -39,7 +39,6 @@
         <div class="col-sm-12">
           <?php 
             echo '<textarea ng-model="review.text" ng-required="true" id="inputReview" class="form-control" name="review" rows="10"></textarea>';
-            echo "<font color='red'>".$errReview."</font>";
           ?>
         </div>
       </div>

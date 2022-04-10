@@ -36,6 +36,7 @@ class UserController
             $row = $result->fetch_array(MYSQLI_ASSOC);
             $_SESSION['user'] = $row['name'];
             $_SESSION['userId'] = $row['user_id'];
+            //header("Location: index.php");
             return $_SESSION['user'];
         } else {
             return false;
