@@ -4,7 +4,7 @@
     $data = mb_convert_encoding($req,'UTF-8', 'UTF-8');
     $post= json_decode($data);
  
-    $error_data = = array(
+    $error_data = array(
         'errPass'  => '',
         'errEmail' => '',
         'success' => true,
@@ -18,7 +18,7 @@
     else {
         $conn = mysqli_connect('localhost', 'root', '', 'scsstore');
         $controller = new UserController($conn);
-        $duplicate = $controller->duplicate($email);
+        $duplicate = $controller->duplicate($post->email);
         if ($duplicate == true) {
             $error_data['errEmail'] = 'Email already exists';
             $error_data['success'] = false;
@@ -26,7 +26,7 @@
         else {
             $conn = mysqli_connect('localhost', 'root', '', 'scsstore');
             $controller = new UserController($conn);
-            $controller->createUser($post->email, $post->name, $post->password, $post->phone, $post->address, $post->city_code);
+            $controller->createUser($post->email, $post->name, $post->password, $post->phone, $post->address, $post->city);
             $controller->signIn($post->email, $post->password);
         }
     }

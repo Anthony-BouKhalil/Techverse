@@ -20,7 +20,7 @@
         <label for="inputPassword" class="col-sm-3 col-form-label">Password <font color='red'>*</font></label>
         <div class="col-sm-6">
           <input type="password" ng-model="user.password" ng-required="true" class="form-control" id="inputPassword" name="password" placeholder="Password">
-          {{errPassword}}
+          {{errPass}}
         </div>
       </div>
       <div class="form-group row">
