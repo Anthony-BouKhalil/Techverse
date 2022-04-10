@@ -22,5 +22,17 @@ class ProductController
         $query = "SELECT * FROM product WHERE product_id = " . $id;
         return mysqli_query($this->dbcon, $query);
     }
+    
+    public function getProducts() {
+        $query = "SELECT * FROM product";
+        $result =  mysqli_query($this->dbcon, $query);
+
+        $products = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            array_push($products, $row);
+        }
+        $data = mb_convert_encoding($products,'UTF-8', 'UTF-8');
+        echo json_encode($data);
+    }
 }
 ?>

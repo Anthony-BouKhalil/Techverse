@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<body>
     <header class="p-3 bg-dark text-white">
         <div class="header-container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -11,16 +10,16 @@
                     <div class="logo-container">
                         <img width="40" height="40" src="images/techverse-logo.png"></img>
                     </div>
-                    <li><a href="index.php" class="nav-link px-2 text-white">Home</a></li>
-                    <li><a href="about-page.php" class="nav-link px-2 text-white">About Us</a></li>
-                    <li><a href="contact-us.php" class="nav-link px-2 text-white">Contact Us</a></li>
-                    <li><a href="services.php" class="nav-link px-2 text-white">Types of Services</a></li>
-                    <li><a href="reviews.php" class="nav-link px-2 text-white">Reviews</a></li>
+                    <li><a href="#!" class="nav-link px-2 text-white">Home</a></li>
+                    <li><a href="#!aboutus" class="nav-link px-2 text-white">About Us</a></li>
+                    <li><a href="#!contactus" class="nav-link px-2 text-white">Contact Us</a></li>
+                    <li><a href="#!services" class="nav-link px-2 text-white">Types of Services</a></li>
+                    <li><a href="#!reviews" class="nav-link px-2 text-white">Reviews</a></li>
                 </ul>
 
                 <div class="text-end">
                     <button type='button' class='btn btn-outline-light me-2' data-bs-toggle="modal" data-bs-target="#searchModal">Search</button>
-                    <a href='shopping-cart.php'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
+                    <a href='#!shopping-cart'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
                     <?php
                       if (isset($_SESSION['user'])) {
                         echo 
@@ -34,12 +33,11 @@
                         </div>";
                       }
                       else {
-                        echo "<a href='sign-in.php'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>";
-                        echo "<a href='sign-up.php'><button type='button' class='btn btn-warning'>Sign-up</button></a>";
+                        echo "<a href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>";
+                        echo "<a href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>";
                       }
                     ?>
                 </div>
             </div>
         </div>
     </header>
-</body>
