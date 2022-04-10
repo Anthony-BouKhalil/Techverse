@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2022 at 09:19 PM
+-- Generation Time: Apr 03, 2022 at 12:39 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -160,7 +160,8 @@ CREATE TABLE `user` (
   `address` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `login_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` char(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `salt` char(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `balance` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -168,10 +169,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `tel_no`, `email`, `address`, `city_code`, `login_id`, `password`, `balance`) VALUES
-(1, 'John Smith', '416-000-0000', 'b@gmail.com', '5 West Street', 'TO', '', 'rSpfwwgSaDgmJ93', NULL),
-(2, 'Admin', '', 'email@email.com', '123 Main St', 'TO', NULL, 'Adminpass123', NULL),
-(3, 'NewUser', '', 'new@email.com', '123 Main St', 'TO', NULL, 'NewUser123', NULL);
+INSERT INTO `user` (`user_id`, `name`, `tel_no`, `email`, `address`, `city_code`, `login_id`, `password_hash`, `salt`, `balance`) VALUES
+(1, 'John Smith', '416-000-0000', 'b@gmail.com', '5 West Street', 'TO', '', '', '', NULL),
+(2, 'Admin', '', 'email@email.com', '123 Main St', 'TO', NULL, '', '', NULL),
+(3, 'NewUser', '', 'new@email.com', '123 Main St', 'TO', NULL, '', '', NULL),
+(5, 'arnold123', '', 'arnold@email.com', '123 Main St', 'TO', NULL, 'cca0055739ced91221bf3785329b9deb', '¾xç½$½Øöã¨·ík¿WB>', NULL);
 
 --
 -- Indexes for dumped tables
@@ -261,7 +263,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
