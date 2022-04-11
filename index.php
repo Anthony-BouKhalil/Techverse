@@ -84,6 +84,7 @@ if (!isset($_SESSION)) {
             document.getElementById("browser").innerHTML = "You are currently using: " + browser;
     </script>
     </script>
+    <?php include 'search.html' ?>
     <?php require 'footer.php' ?>
     <script src="js/app.js"></script>
 </body>

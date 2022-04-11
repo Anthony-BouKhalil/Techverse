@@ -126,3 +126,18 @@ app.controller('SignUpController', function($scope, $http) {
         }
     }
 });
+app.controller('SearchController', function($scope, $http) {
+    $scope.submit = function() {
+        var request = $http({
+            method: "post",
+            url: "php/search-data.php",
+            data: $scope.order
+        }).then(function (res) {
+            console.log(res.data);
+            $scope.result = res.data;
+            
+            var myModal = new bootstrap.Modal(document.getElementById('searchResultModal'));
+            myModal.show();
+        });
+    }
+});
