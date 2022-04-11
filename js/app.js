@@ -134,7 +134,7 @@ app.controller('InvoiceController', function($scope, $http, $location) {
         $location.path("/purchase");
     }
 });
-app.controller('PurchaseController', function($scope, $http) {
+app.controller('PurchaseController', function($scope, $http, $location) {
     if (!$scope.$parent.name) {
         $location.path("/");
     }
