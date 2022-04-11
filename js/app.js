@@ -135,7 +135,7 @@ app.controller('SignUpController', function($scope, $http, $location) {
                 else {
                     $scope.$parent.name = res.data[0];
                     //$rootScope.user = res.data[0];
-                    window.location.href = "index.php";
+                    //window.location.href = "index.php";
                     //window.location.reload();/
                     $location.path("/");
                 }
