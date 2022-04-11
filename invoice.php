@@ -1,21 +1,4 @@
-<?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
-    <link rel="stylesheet" type="text/css" href="styles/main-page.css">
-    <link rel="stylesheet"  type="text/css" href="bootstrap/css/bootstrap.css"></link>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    
     <style>
     *{
 	    margin: 0;
@@ -41,59 +24,37 @@ if (!isset($_SESSION)) {
     </style>
 
 </head>
-<body>
-    <?php require 'header.php';?>
+<body ng-controller="InvoiceController">
     <div class="container">
         <div id="map"></div>
         
-    <div class="sub-container">
-        <?php 
-        echo "<div class='center'>";
+        <div class="sub-container">
+            <div class='center'>
+                <h2>Invoice</h2><br><br>
+                Name: {{checkout.name}}<br>
+                Email: {{checkout.email}}<br><br>
+                Delivery Date: {{checkout.date}}<br>
+                Delivery Time: {{checkout.time}}<br><br>
+                
+                <h5>Products</h5>
+                <div ng-repeat="product in cart">
+                  {{product.name}}<br>
+                  Type: {{product.type}}<br>
+                  Price: ${{product.unit_price}} CAD<br><br>
+                </div>
+                <b>Total:</b> ${{total_price}} CAD
+                <br><br>
 
-            $conn = mysqli_connect('localhost', 'root', '', 'scsstore');
-            
-            echo "<h2>Invoice</h2><br><br>";
-            echo "Name: " . $_SESSION['name'] . "<br>"; 
-            echo "Email: " . $_SESSION['email'] . "<br><br>"; 
-
-            echo "Delivery Date: " . $_SESSION['date'] . "<br>";
-            echo "Delivery Time: " . $_SESSION['time'] . "<br><br>";
-
-
-            if (isset($_SESSION['cart'])) {
-                $len = array_key_last($_SESSION['cart']);
-
-                $total_price = 0;
-                for ($i = 0; $i <= $len; $i++) {
-                    if(isset($_SESSION['cart'][$i])) {
-                        $sql = "SELECT * FROM product WHERE product_id = " . $_SESSION['cart'][$i];
-                        $result = mysqli_query($conn, $sql);
-
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "Product: " . $row['name'] . "<br>";
-                                echo "Type: " . $row['type'] . "<br>";
-                                echo "Price: $" . $row['unit_price'] . " CAD<br><br>";
-                                $total_price = $total_price + $row['unit_price'];
-                            }
-                        }
-                    }
-                }
-                echo "<b>Total:</b> $" . $total_price . " CAD <br><br>";
-                $_SESSION['total'] = $total_price;
-            }
-
-            echo "<form action='purchase.php' method='POST'>";
-            echo "<a href='purchase.php'><button type='button' name='submit' class='btn btn-success'> Confirm Purchase</button></a>";
-            echo "</form>";
-            echo "</div>";
-        ?>
-    </div>
+                <form ng-submit="confirm_purchase()">
+                    <input value="Confirm Purchase" type='submit' name='submit' class='btn btn-success'/>
+                </form>
+            </div>
+        </div>
     </div>
     
 <!-- Java Script -->
 <script>
-    var coord  = "<?php echo $_SESSION['branch'] ?>".split(',');
+  var coord  = $scope.branch.split(',');
     var latitude = parseFloat(parseFloat(coord[0]).toFixed(6));
     var longitude = parseFloat(parseFloat(coord[1]).toFixed(6));
 
@@ -166,7 +127,4 @@ if (!isset($_SESSION)) {
 </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mAYmeS6wL_5Tvn86c3Ij2xPQtHb5CaY&callback=initMap">
 </script>
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-<?php require 'footer.php';?>
 </body>
-</html>

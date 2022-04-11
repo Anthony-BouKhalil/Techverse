@@ -29,8 +29,9 @@
     </table><br>
     
     <font color='red' ng-if="!$parent.name">You must be signed in to checkout</font>
-    <form ng-if='$parent.name && cart.length' action='check-out.php' method='POST'>
-        <a href='check-out.php'><button type='button' class='btn btn-warning' name='checkout' style='float:right;'>Proceed to Checkout</button></a>
+    <!--<form ng-if='$parent.name && cart.length' action='check-out.php' method='POST'>-->
+    <form ng-if='$parent.name && cart.length' ng-submit="checkout()">
+        <input type='submit' value="Proceed to Checkout" class='btn btn-warning' name='checkout' style='float:right;'/>
     </form>
     <font color='red' ng-if='$parent.name && !cart.length'>You must have items in your cart to checkout</font>
 </body>

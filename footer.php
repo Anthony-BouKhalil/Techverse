@@ -93,15 +93,3 @@
 
 </body>
 </html>
-
-<?php/*
-if (isset($_POST['submitsearch'])) {
-    echo "<script> 
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }
-        var myModal = new bootstrap.Modal(document.getElementById('searchResultModal'))
-        myModal.show()
-    </script>";
-}*/
-?>

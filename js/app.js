@@ -5,7 +5,6 @@ var app = angular.module('SCSStore', ['ngRoute']);
             $rootScope.user = res.data[0];
        });
 });*/
-app.value('user', { name: '' });
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -29,6 +28,15 @@ app.config(function($routeProvider) {
         .when('/sign-up', {
             templateUrl: 'sign-up.php',
             controller : 'SignUpController'})
+        .when('/checkout', {
+            templateUrl: 'check-out.php',
+            controller : 'CheckoutController'})
+        .when('/invoice', {
+            templateUrl: 'invoice.php',
+            controller : 'InvoiceController'})
+        .when('/purchase', {
+            templateUrl: 'purchase.php',
+            controller : 'PurchaseController'})
         .otherwise({redirectTo: '/'});
 });
 
@@ -76,7 +84,7 @@ app.controller('ReviewsController', function($scope, $http) {
         }
     }
 });
-app.controller('CartController', function($scope, $http) {
+app.controller('CartController', function($scope, $http, $location) {
     $http.get("php/cart.php?action=list")
         .then(function (res) {
             $scope.cart = res.data;
@@ -90,6 +98,54 @@ app.controller('CartController', function($scope, $http) {
         });
         $scope.cart.splice($scope.cart.findIndex(product => product.product_id === product_id), 1);
     }
+    $scope.checkout = function() {
+        $location.path("/checkout");
+    }
+});
+app.controller('CheckoutController', function($scope, $http, $location, $filter) {
+    if ($scope.$parent.name) {
+        $location.path("/");
+    }
+    $scope.get_invoice = function() {
+        var newdate = new Date($scope.checkout.date);
+        $scope.checkout.date = $filter('date')(newdate, "yyyy-MM-dd");
+        $scope.$parent.checkout = $scope.checkout;
+        $location.path("/invoice");
+    }
+});
+app.controller('InvoiceController', function($scope, $http, $location) {
+    if ($scope.$parent.name) {
+        $location.path("/");
+    }
+    $http.get("php/cart.php?action=list")
+        .then(function (res) {
+            $scope.cart = res.data;
+            $scope.total_price = 0;
+            for (let i = 0; i < $scope.cart.length; i++) {
+                $scope.total_price += +$scope.cart[i].unit_price;
+            }
+            $scope.$parent.checkout.total_price = $scope.total_price;
+        });
+
+    console.log($scope.$parent.checkout);
+
+    $scope.confirm_purchase = function() {
+        console.log("purchase");
+        $location.path("/purchase");
+    }
+});
+app.controller('PurchaseController', function($scope, $http) {
+    if ($scope.$parent.name) {
+        $location.path("/");
+    }
+    $http({
+        method: "post",
+        url: "php/purchase-submit.php",
+        data: {'checkout_data' : $scope.$parent.checkout }
+    }).then(function(res) {
+        $scope.order_id = res.data.order_id;
+        $scope.user_id = res.data.user_id;
+    });
 });
 app.controller('SignInController', function($scope, $http, $location) {
     if ($scope.$parent.name) {
@@ -165,6 +221,7 @@ app.controller('HeaderController', function($scope, $http, $location) {
             url: "sign-out.php"
         });
         $scope.$parent.name = "";
+        delete $scope.$parent.checkout;
         $location.path("/");
     }
 });
