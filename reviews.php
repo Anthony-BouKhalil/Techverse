@@ -42,17 +42,12 @@
           ?>
         </div>
       </div>
-      <?php
-        if (isset($_SESSION['user'])) {
-            echo "<div class='form-group row'>
-                  <div class='offset-sm-3 col-sm-6'>
-                    <input type='submit' value='Submit' name='submit' class='btn btn-primary'/>
-                  </div>
-                  </div>";
-        } else {
-          echo "<font color='red'>You must be signed in to checkout</font>";
-        }
-      ?>
+      <div ng-if="$parent.name" class='form-group row'>
+          <div class='offset-sm-3 col-sm-6'>
+            <input type='submit' value='Submit' name='submit' class='btn btn-primary'/>
+          </div>
+      </div>
+      <font color='red' ng-if="!$parent.name">You must be signed in to submit a review.</font>
     </form>
 </div>
   <table>

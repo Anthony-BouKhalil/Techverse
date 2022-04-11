@@ -1,6 +1,3 @@
-<?php
-require_once 'controllers/product-controller.php';
-?>
 <body ng-controller="CartController">
     <table id="devices" style="width:100%">
   	    <col style="width:20%">
@@ -30,18 +27,10 @@ require_once 'controllers/product-controller.php';
             </td>
         </tr>
     </table><br>
-    <?php            
-        if (isset($_SESSION['user'])) {
-            if ((isset($_SESSION["cart"])) && count($_SESSION["cart"]) != 0) {
-                echo "<form action='check-out.php' method='POST'>
-                    <a href='check-out.php'><button type='button' class='btn btn-warning' name='checkout' style='float:right;'>Proceed to Checkout</button></a>
-                    </form>";
-            }
-            else {
-                echo "<font color='red'>You must have items in your cart to checkout</font>";
-            }
-        } else {
-            echo "<font color='red'>You must be signed in to checkout</font>";
-        }
-    ?>
+    
+    <font color='red' ng-if="!$parent.name">You must be signed in to checkout</font>
+    <form ng-if='$parent.name && cart.length' action='check-out.php' method='POST'>
+        <a href='check-out.php'><button type='button' class='btn btn-warning' name='checkout' style='float:right;'>Proceed to Checkout</button></a>
+    </form>
+    <font color='red' ng-if='$parent.name && !cart.length'>You must have items in your cart to checkout</font>
 </body>

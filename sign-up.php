@@ -2,7 +2,7 @@
   <div class="container">
     <h2>Sign Up</h2>
     <p>Please complete the information below to create an account:</p>
-      <form role="form" ng-submit="submit()">
+      <form role="form" ng-submit="submit_signup()">
       <div class="form-group row">
         <label for="inputEmail" class="col-sm-3 col-form-label">Email <font color='red'>*</font></label>
         <div class="col-sm-6">

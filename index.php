@@ -68,8 +68,10 @@ if (!isset($_SESSION)) {
     </style>
 </head>
 <body ng-app="SCSStore">
-    <?php require 'header.php' ?>
-    <div ng-view></div>
+    <div ng-controller="ParentController">
+        <?php require 'header.php' ?>
+        <div ng-view></div>
+    </div>
     <h3 id="browser" style="text-align: center;"></h3>
     <script>
             let agent = navigator.userAgent;

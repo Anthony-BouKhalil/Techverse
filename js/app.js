@@ -5,6 +5,7 @@ var app = angular.module('SCSStore', ['ngRoute']);
             $rootScope.user = res.data[0];
        });
 });*/
+app.value('user', { name: '' });
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -31,6 +32,12 @@ app.config(function($routeProvider) {
         .otherwise({redirectTo: '/'});
 });
 
+app.controller('ParentController', function($scope, $http) {
+    $http.get("php/current_user.php")
+        .then(function(res) {
+            $scope.name = res.data[0];
+        });
+});
 app.controller('HomeController', function($scope, $http) {
     $http.get("php/products-data.php")
         .then(function (res) {
@@ -84,8 +91,11 @@ app.controller('CartController', function($scope, $http) {
         $scope.cart.splice($scope.cart.findIndex(product => product.product_id === product_id), 1);
     }
 });
-app.controller('SignInController', function($scope, $http) {
-    $scope.submit = function() {
+app.controller('SignInController', function($scope, $http, $location) {
+    if ($scope.$parent.name) {
+        $location.path("/");
+    }
+    $scope.submit_signin = function() {
         if ($scope.user) {
             var request = $http({
                 method: "post",
@@ -96,16 +106,21 @@ app.controller('SignInController', function($scope, $http) {
                     $scope.errCredentials = "The login credentials you entered are incorrect";
                 }
                 else {
-                   //$rootScope.user = res.data[0];
-                   window.location.href = "index.php";
-                   //window.location.reload();/
+                    $scope.$parent.name = res.data[0];
+                    //$rootScope.user = res.data[0];
+                    //window.location.href = "index.php";
+                    //window.location.reload();/
+                    $location.path("/");
                 }
             });
         }
     }
 });
-app.controller('SignUpController', function($scope, $http) {
-    $scope.submit = function() {
+app.controller('SignUpController', function($scope, $http, $location) {
+    if ($scope.$parent.name) {
+        $location.path("/");
+    }
+    $scope.submit_signup = function() {
         if ($scope.user) {
             var request = $http({
                 method: "post",
@@ -118,16 +133,18 @@ app.controller('SignUpController', function($scope, $http) {
                     $scope.errPass = res.data["errPass"];
                 }
                 else {
-                   //$rootScope.user = res.data[0];
-                   window.location.href = "index.php";
-                   //window.location.reload();/
+                    $scope.$parent.name = res.data[0];
+                    //$rootScope.user = res.data[0];
+                    window.location.href = "index.php";
+                    //window.location.reload();/
+                    $location.path("/");
                 }
             });
         }
     }
 });
 app.controller('SearchController', function($scope, $http) {
-    $scope.submit = function() {
+    $scope.submit_search = function() {
         var request = $http({
             method: "post",
             url: "php/search-data.php",
@@ -139,5 +156,15 @@ app.controller('SearchController', function($scope, $http) {
             var myModal = new bootstrap.Modal(document.getElementById('searchResultModal'));
             myModal.show();
         });
+    }
+});
+app.controller('HeaderController', function($scope, $http, $location) {
+    $scope.signout = function() {
+        $http({
+            method: "post",
+            url: "sign-out.php"
+        });
+        $scope.$parent.name = "";
+        $location.path("/");
     }
 });

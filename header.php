@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <header class="p-3 bg-dark text-white">
+    <header ng-controller="HeaderController" class="p-3 bg-dark text-white">
         <div class="header-container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -20,23 +20,17 @@
                 <div class="text-end">
                     <button type='button' class='btn btn-outline-light me-2' data-bs-toggle="modal" data-bs-target="#searchModal">Search</button>
                     <a href='#!shopping-cart'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
-                    <?php
-                      if (isset($_SESSION['user'])) {
-                        echo 
-                        "<div class='dropdown'>
-                            <button class='btn btn-warning dropdown-toggle' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>"
-                            . $_SESSION['user'] .
-                            "</button>
-                            <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                                <li><a class='dropdown-item' href='sign-out.php'>Sign-out</a></li>
-                            </ul>
-                        </div>";
-                      }
-                      else {
-                        echo "<a href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>";
-                        echo "<a href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>";
-                      }
-                    ?>
+                    <div ng-if="$parent.name" class='dropdown'>
+                        <button class='btn btn-warning dropdown-toggle' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>
+                        {{$parent.name}}
+                        </button>
+                        <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
+                            <!--<li><a class='dropdown-item' href='sign-out.php'>Sign-out</a></li>-->
+                            <li><button class='dropdown-item' ng-click="signout()">Sign-out</a></li>
+                        </ul>
+                    </div>
+                    <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
+                    <a ng-if="!name" href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                 </div>
             </div>
         </div>

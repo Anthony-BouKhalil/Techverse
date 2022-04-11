@@ -2,7 +2,7 @@
     <div class="container">
       <h2>Sign-In</h2>
       <p>Please complete the information below to create an account:</p>
-      <form role="form" ng-submit="submit()">
+      <form role="form" ng-submit="submit_signin()">
         <div class="form-group row">
           <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
           <div class="col-sm-6">
