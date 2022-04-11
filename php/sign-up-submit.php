@@ -8,6 +8,7 @@
         'errPass'  => '',
         'errEmail' => '',
         'success' => true,
+        'name' => ''
     );
 
     // Check if a password is a valid password
@@ -27,7 +28,7 @@
             $conn = mysqli_connect('localhost', 'root', '', 'scsstore');
             $controller = new UserController($conn);
             $controller->createUser($post->email, $post->name, $post->password, $post->phone, $post->address, $post->city);
-            $controller->signIn($post->email, $post->password);
+            $error_data['name'] = $controller->signIn($post->email, $post->password);
         }
     }
 

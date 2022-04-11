@@ -189,7 +189,7 @@ app.controller('SignUpController', function($scope, $http, $location) {
                     $scope.errPass = res.data["errPass"];
                 }
                 else {
-                    $scope.$parent.name = res.data[0];
+                    $scope.$parent.name = res.data["name"];
                     //$rootScope.user = res.data[0];
                     //window.location.href = "index.php";
                     //window.location.reload();/
