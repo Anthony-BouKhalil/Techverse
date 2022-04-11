@@ -103,7 +103,7 @@ app.controller('CartController', function($scope, $http, $location) {
     }
 });
 app.controller('CheckoutController', function($scope, $http, $location, $filter) {
-    if ($scope.$parent.name) {
+    if (!$scope.$parent.name) {
         $location.path("/");
     }
     $scope.get_invoice = function() {
@@ -114,7 +114,7 @@ app.controller('CheckoutController', function($scope, $http, $location, $filter)
     }
 });
 app.controller('InvoiceController', function($scope, $http, $location) {
-    if ($scope.$parent.name) {
+    if (!$scope.$parent.name) {
         $location.path("/");
     }
     $http.get("php/cart.php?action=list")
@@ -135,7 +135,7 @@ app.controller('InvoiceController', function($scope, $http, $location) {
     }
 });
 app.controller('PurchaseController', function($scope, $http) {
-    if ($scope.$parent.name) {
+    if (!$scope.$parent.name) {
         $location.path("/");
     }
     $http({
