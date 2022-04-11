@@ -8,7 +8,7 @@ class UserController
     }
 
     public function createUser($email, $name, $password, $phone, $address, $city_code) {
-        $salt = random_bytes(20);
+        $salt = $this->generateRandomString(20);
         $password_hash = md5($password . $salt);
         $query = "INSERT INTO user (email, name, password_hash, salt, tel_no, address, city_code) VALUES ('$email', '$name', '$password_hash', '$salt', '$phone', '$address', '$city_code')";
         $result = mysqli_query($this->dbcon, $query);
@@ -51,6 +51,16 @@ class UserController
         } else {
             return false;
         }
+    }
+
+    public function generateRandomString($length) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 }
 ?>
