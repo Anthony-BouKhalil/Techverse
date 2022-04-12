@@ -27,7 +27,7 @@ app.config(function($routeProvider) {
             controller : 'CheckoutController'})
         .when('/invoice', {
             templateUrl: 'invoice.php',
-            controller : 'InvoiceController'})
+            controller : 'InvoiceController'})	
         .when('/purchase', {
             templateUrl: 'purchase.php',
             controller : 'PurchaseController'})

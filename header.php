@@ -20,22 +20,20 @@
                 <div class="text-end">
                     <button type='button' class='btn btn-outline-light me-2' data-bs-toggle="modal" data-bs-target="#searchModal">Search</button>
                     <a href='#!shopping-cart'><button type='button' class='btn btn-outline-light me-2'>Shopping Cart</button></a>
-                    <div ng-if="$parent.name" class='dropdown'>
+                    <div style='display: inline' ng-if="$parent.name" class='dropdown'>
                         <button class='btn btn-warning dropdown-toggle' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>
                         {{$parent.name}}
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
                             <li><button class='dropdown-item' ng-click="signout()">Sign-out</a></li>
                         </ul>  
-                    </div>
-                    <div ng-if="$parent.name === 'Admin'">
-                        <a href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
+                        <a ng-if="$parent.name === 'Admin'" href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
                             <button type='button' class='btn btn-primary' style='float:right;'>
                                 db Maintain
                             </button>
                         </a> 
-                    </div>
-                                <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
+                </div>
+                    <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
                     <a ng-if="!name" href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                 </div>
             </div>

@@ -1,35 +1,8 @@
-<head>
-    <style>
-    *{
-	    margin: 0;
-	    padding: 0;
-	}
-	#map{
-	    height: 600px;
-	    width: 700px;
-	}    
-    .center {
-        text-align: center;
-        padding: 15px;
-    }
-    .map-container{
-        display: flex;
-        justify-content: center;
-    }
-    .map-sub-container{
-        display: flex;
-        padding-left: 10%;
-        padding-top: 5%;
-    }
-    </style>
-
-</head>
 <body ng-controller="InvoiceController">
     <div ng-init="loadScript()" class="map-container">
-        <div id="map"></div>
-        
         <div class="map-sub-container">
-            <div class='center'>
+            <div id="map"></div>
+            <div class='map-center'>
                 <h2>Invoice</h2><br><br>
                 Name: {{checkout.name}}<br>
                 Email: {{checkout.email}}<br><br>
