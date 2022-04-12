@@ -85,6 +85,7 @@ app.controller('ReviewsController', function($scope, $http) {
     }
 });
 app.controller('CartController', function($scope, $http, $location) {
+    $scope.cart = [];
     $http.get("php/cart.php?action=list")
         .then(function (res) {
             $scope.cart = res.data;

@@ -14,7 +14,7 @@
           <th>Type</th>
           <th>Actions</th>
         </tr>
-        <tr ng-repeat="product in cart">
+        <tr ng-repeat="product in cart track by $index">
             <td>
                 <img src='{{product.image}}' alt='{{product.name}}' width='100%'>
             </td>

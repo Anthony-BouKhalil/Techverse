@@ -10,13 +10,15 @@ class CartController
 
     public function getCartProducts() {
         $productcon = new ProductController($this->dbcon);
-        $len = array_key_last($_SESSION['cart']);
         $cart_products = array();
-        for ($i = 0; $i <= $len; $i++) {
-            if(isset($_SESSION['cart'][$i])) {
-                $result = $productcon->getProduct($_SESSION['cart'][$i]);
-                if (mysqli_num_rows($result) > 0) {
-                    array_push($cart_products, mysqli_fetch_assoc($result));
+        if (isset($_SESSION['cart'])) {
+            $len = array_key_last($_SESSION['cart']);
+            for ($i = 0; $i <= $len; $i++) {
+                if(isset($_SESSION['cart'][$i])) {
+                    $result = $productcon->getProduct($_SESSION['cart'][$i]);
+                    if (mysqli_num_rows($result) > 0) {
+                        array_push($cart_products, mysqli_fetch_assoc($result));
+                    }
                 }
             }
         }

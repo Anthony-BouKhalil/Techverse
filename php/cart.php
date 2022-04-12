@@ -21,7 +21,7 @@ case "add":
 case "delete":
     if (!empty($_SESSION['cart']) && isset($post->product_id)) {
         if (($key = array_search($post->product_id, $_SESSION['cart'])) !== false) {
-            unset($_SESSION['cart'][$key]);
+            array_splice($_SESSION['cart'], $key, 1);
         }
     } 
     break;
@@ -32,5 +32,4 @@ case "list":
     $controller->getCartProducts();
     break;
 }
-
 ?>
