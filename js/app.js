@@ -1,10 +1,4 @@
 var app = angular.module('SCSStore', ['ngRoute']);
-/*app.run(function($rootScope, $http) {
-    $http.get("php/current_user.php")
-        .then(function (res) {
-            $rootScope.user = res.data[0];
-       });
-});*/
 app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -128,13 +122,92 @@ app.controller('InvoiceController', function($scope, $http, $location) {
             $scope.$parent.checkout.total_price = $scope.total_price;
         });
 
-    console.log($scope.$parent.checkout);
+    $scope.latitude = function() {
+        return parseFloat(parseFloat($scope.$parent.checkout.branch.split(',')[0]).toFixed(6));
+    }
+
+    $scope.longitude = function() {
+        return parseFloat(parseFloat($scope.$parent.checkout.branch.split(',')[1]).toFixed(6));
+    }
+
+    $scope.loadScript = function() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mAYmeS6wL_5Tvn86c3Ij2xPQtHb5CaY';//&callback=initMap';
+        document.body.appendChild(script);
+        setTimeout(function() {
+            $scope.initMap();
+        }, 500);
+    }
+
+    $scope.haversine_distance = function(mk1, mk2) {
+        var R = 3958.8; // Radius of the Earth in miles
+        var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
+        var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
+        var difflat = rlat2-rlat1; // Radian difference (latitudes)
+        var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
+
+        var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2) * Math.sin(difflat/2) + Math.cos(rlat1) * Math.cos(rlat2) * Math.sin(difflon/2) * Math.sin(difflon/2)));
+        return d;
+    }
+    $scope.initMap = function() {
+        let map, infoWindow;
+        map = new google.maps.Map(document.getElementById("map"), {
+            // once initialized, map centers around 'center'
+            center: { lat: 40.774102, lng: -73.971734 },
+            zoom: 11,
+        });
+
+        infoWindow = new google.maps.InfoWindow();
+        const locationButton = document.createElement("button");
+
+        locationButton.textContent = "Calculate Location";
+        locationButton.classList.add("custom-map-control-button");
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+        // the following only gets executed if the user hits "Calculate Location"
+        locationButton.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const userPosition = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    
+                    infoWindow.setPosition(userPosition);
+                    infoWindow.setContent("You are here!"); // current user location pointer (points to EXACT locaiton)
+                    infoWindow.open(map);
+                    map.setCenter(userPosition);
+                    
+                    const location = {lat: $scope.latitude(), lng: $scope.longitude()};
+
+                    var position1 = new google.maps.Marker({position: userPosition, map: map});
+                    var position2 = new google.maps.Marker({position: location, map: map});
+                    var line = new google.maps.Polyline({path: [userPosition, location], map: map});
+
+                    var distance = $scope.haversine_distance(posititon1, posititon2);
+
+                    // calculates the distance between the points in miles
+                    document.getElementById('msg').innerHTML = "Distance between location: " + distance.toFixed(2) + " mi.";
+
+                }, () => {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                }
+            );
+            } else {
+                // User did not accept permission on browser
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        });
+    }
+
 
     $scope.confirm_purchase = function() {
         console.log("purchase");
         $location.path("/purchase");
     }
 });
+
 app.controller('PurchaseController', function($scope, $http, $location) {
     if (!$scope.$parent.name) {
         $location.path("/");
@@ -164,9 +237,6 @@ app.controller('SignInController', function($scope, $http, $location) {
                 }
                 else {
                     $scope.$parent.name = res.data[0];
-                    //$rootScope.user = res.data[0];
-                    //window.location.href = "index.php";
-                    //window.location.reload();/
                     $location.path("/");
                 }
             });
@@ -191,9 +261,6 @@ app.controller('SignUpController', function($scope, $http, $location) {
                 }
                 else {
                     $scope.$parent.name = res.data["name"];
-                    //$rootScope.user = res.data[0];
-                    //window.location.href = "index.php";
-                    //window.location.reload();/
                     $location.path("/");
                 }
             });

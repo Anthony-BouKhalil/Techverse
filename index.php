@@ -21,7 +21,6 @@ if (!isset($_SESSION)) {
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="scripts/getLocation.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mAYmeS6wL_5Tvn86c3Ij2xPQtHb5CaY&callback=initMap"></script>
     <style>  
         .center {
             margin: auto;

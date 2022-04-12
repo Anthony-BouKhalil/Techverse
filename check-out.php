@@ -7,14 +7,12 @@
         <label for="inputUser" class="col-sm-3 col-form-label">Name <font color='red'>*</font></label>
         <div class="col-sm-6">
           <input ng-model="checkout.name" ng-required="true" type="text" class="form-control" id="inputUser" name="user" placeholder="Name">
-          <?php echo "<font color='red'>".$errName."</font>";?>
         </div>
       </div>
       <div class="form-group row">
         <label for="inputEmail" class="col-sm-3 col-form-label">Email <font color='red'>*</font></label>
         <div class="col-sm-6">
           <input ng-model="checkout.email" ng-required="true" type="text" class="form-control" id="inputEmail" name="email" placeholder="Email">         
-          <?php echo "<font color='red'>".$errEmail."</font>";?> 
         </div>
       </div>
       <div class="form-group row">
@@ -27,7 +25,6 @@
                     <option value="42.374380,-83.425500">39000 Amrhein Rd, Livonia, MI 48150, United States</option>;
                     <option value="43.414280,-80.387589">125 Maple Grove Rd, Cambridge, ON N3H 4R7, Canada</option>;
                 </select>
-          <?php echo "<font color='red'>".$errBranch."</font>";?>
         </div>
       </div>
       <div class="form-group row">
@@ -55,21 +52,18 @@
               <input ng-model="checkout.time" ng-required="!checkout.time" class="form-check-input" type="radio" name="time3" id="time3" value="5:00 pm">
               <label class="form-check-label" for="time3">5:00 pm</label>
             </div>
-            <?php echo "<font color='red'>".$errTime."</font>";?>
         </div>
       </div>
       <div class="form-group row">
       <label for="inputCreditName" class="col-sm-3 col-form-label">Name on Credit Card <font color='red'>*</font></label>
         <div class="col-sm-6">
         <input ng-required="true" type="text" class="form-control" id="inputCreditUser" name="creditUser" placeholder="Name on Credit Card">
-          <?php echo "<font color='red'>".$errCreditUser."</font>";?>
         </div>
       </div>
       <div class="form-group row">
       <label for="inputCreditName" class="col-sm-3 col-form-label">Credit Card Number <font color='red'>*</font></label>
         <div class="col-sm-6">
         <input ng-required="true" type="text" class="form-control" id="inputCC" name="CC" placeholder="Credit Card Number">
-          <?php echo "<font color='red'>".$errCC."</font>";?>
         </div>
       </div>
       <div class="form-group row">
@@ -84,7 +78,6 @@
       <label for="inputCreditName" class="col-sm-3 col-form-label">CVV <font color='red'>*</font></label>
         <div class="col-sm-2">
         <input ng-required="true" type="text" class="form-control" id="inputCVV" name="CVV" placeholder="CVV">
-          <?php echo "<font color='red'>".$errCVV."</font>";?>
         </div>
       </div>
       
