@@ -133,7 +133,7 @@ app.controller('InvoiceController', function($scope, $http, $location) {
     $scope.loadScript = function() {
         var script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mAYmeS6wL_5Tvn86c3Ij2xPQtHb5CaY';//&callback=initMap';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2mAYmeS6wL_5Tvn86c3Ij2xPQtHb5CaY';
         document.body.appendChild(script);
         setTimeout(function() {
             $scope.initMap();

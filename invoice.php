@@ -12,11 +12,11 @@
         text-align: center;
         padding: 15px;
     }
-    .container{
+    .map-container{
         display: flex;
         justify-content: center;
     }
-    .sub-container{
+    .map-sub-container{
         display: flex;
         padding-left: 10%;
         padding-top: 5%;
@@ -25,10 +25,10 @@
 
 </head>
 <body ng-controller="InvoiceController">
-    <div ng-init="loadScript()" class="container">
+    <div ng-init="loadScript()" class="map-container">
         <div id="map"></div>
         
-        <div class="sub-container">
+        <div class="map-sub-container">
             <div class='center'>
                 <h2>Invoice</h2><br><br>
                 Name: {{checkout.name}}<br>
