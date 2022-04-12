@@ -2,8 +2,8 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 03, 2022 at 12:39 AM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 12, 2022 at 10:56 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -54,11 +54,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `trip_id`, `date_issued`, `order_date`, `total_price`, `payment_code`) VALUES
-(6, 2, NULL, '2022-03-13', '2022-03-13', '2008.00', NULL),
-(7, 2, NULL, '2022-03-13', '2022-03-18', '679.00', NULL),
-(8, 2, NULL, '2022-03-13', '2022-03-13', '649.00', NULL),
-(9, 2, NULL, '2022-03-13', '2022-03-13', '345.00', NULL),
-(10, 3, NULL, '2022-03-13', '2022-03-13', '149.99', NULL);
+(11, 12, NULL, '2022-04-12', '2022-04-14', '1000.00', NULL),
+(12, 13, NULL, '2022-04-12', '2022-04-13', '1000.00', NULL),
+(13, 12, NULL, '2022-04-12', '2022-04-14', '1329.00', NULL),
+(14, 13, NULL, '2022-04-12', '2022-04-13', '329.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -110,13 +109,11 @@ CREATE TABLE `productorder` (
 --
 
 INSERT INTO `productorder` (`product_id`, `order_id`) VALUES
-(1, 6),
-(1, 7),
-(2, 6),
-(3, 6),
-(4, 9),
-(6, 8),
-(10, 10);
+(2, 13),
+(2, 14),
+(3, 11),
+(3, 12),
+(3, 13);
 
 -- --------------------------------------------------------
 
@@ -130,6 +127,16 @@ CREATE TABLE `review` (
   `text` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   `stars` tinyint(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `product_id`, `text`, `stars`) VALUES
+(1, 1, 'The iPhone 11 delivers superb cameras, fast performance and excellent battery life, making it the iPhone to buy for many people, especially after Apple cut the price once again.', 4),
+(2, 2, 'If you are an iPhone user and have been toying with the idea of going true wireless with your earbuds, then the Apple AirPods Pro are a great choice. The new noise-cancelling feature is neat and useful, and the overall improvements to sound and design could not be more welcome – though, they are quite pricey.', 5),
+(3, 1, 'The iPhone 11 - the successor to the iPhone XR - has gone from secondary handset to firmly taking the limelight. Offering most of the top-end camera technology of the powerful iPhone 11 Pro, it packs good spec and manages to do so for a lower cost than many would expect - this is the one to go for if you want a good value new iPhone.', 5),
+(9, 4, 'The Beats by Dre Studio3 Wireless is a great gadget, but was hard to justify for the original $345 price tag. ', 3);
 
 -- --------------------------------------------------------
 
@@ -170,10 +177,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `tel_no`, `email`, `address`, `city_code`, `login_id`, `password_hash`, `salt`, `balance`) VALUES
-(1, 'John Smith', '416-000-0000', 'b@gmail.com', '5 West Street', 'TO', '', '', '', NULL),
-(2, 'Admin', '', 'email@email.com', '123 Main St', 'TO', NULL, '', '', NULL),
-(3, 'NewUser', '', 'new@email.com', '123 Main St', 'TO', NULL, '', '', NULL),
-(5, 'arnold123', '', 'arnold@email.com', '123 Main St', 'TO', NULL, 'cca0055739ced91221bf3785329b9deb', '¾xç½$½Øöã¨·ík¿WB>', NULL);
+(12, 'Mike James', '416-111-1112', 'DSDDSSD@gmail.com', '55 Bay Street', 'TO', NULL, '44e23312686986fb9b4ae258f08ad50c', 'Yq07z7KHL4rwFblgMsQd', NULL),
+(13, 'Admin', '416-000-0000', 'admin@gmail.com', '5 Street East', 'TO', NULL, 'fb3e41164b2733880f36dbb7a2d78794', 'fcSXQzEkH7iBmHsG3c1Q', NULL);
 
 --
 -- Indexes for dumped tables
@@ -239,7 +244,7 @@ ALTER TABLE `car`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -251,7 +256,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `trip`
@@ -263,7 +268,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
