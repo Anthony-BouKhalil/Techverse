@@ -25,11 +25,15 @@
                         {{$parent.name}}
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                            <!--<li><a class='dropdown-item' href='sign-out.php'>Sign-out</a></li>-->
                             <li><button class='dropdown-item' ng-click="signout()">Sign-out</a></li>
                         </ul>
+                        <a href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
+                            <button type='button' class='btn btn-primary' style='float:right;'>
+                                db Maintain
+                            </button>
+                        </a>   
                     </div>
-                    <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
+                                <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
                     <a ng-if="!name" href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>
                 </div>
             </div>
