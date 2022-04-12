@@ -11,22 +11,8 @@
         <li><a class="dropdown-item" href="" ng-click="type='tablets'">Tablets</a></li>
         <li><a class="dropdown-item" href="" ng-click="type='accessories'">Accessories</a></li>
     </ul>
-    <?php
-
-    if (isset($_SESSION['user'])) {
-        if ($_SESSION['user']== 'Admin')
-        echo "<a href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
-                <button type='button' class='btn btn-primary' style='float:right;'>
-                db Maintain
-                </button>
-                </a>";
-    }   
-    ?>
     </div>
-
 </div>
-
-
     
 <div class="album py-3 bg-light">
     <div class="container">

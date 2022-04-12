@@ -26,12 +26,14 @@
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
                             <li><button class='dropdown-item' ng-click="signout()">Sign-out</a></li>
-                        </ul>
+                        </ul>  
+                    </div>
+                    <div ng-if="$parent.name === 'Admin'">
                         <a href='http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=scsstore' target='_blank'>
                             <button type='button' class='btn btn-primary' style='float:right;'>
                                 db Maintain
                             </button>
-                        </a>   
+                        </a> 
                     </div>
                                 <a ng-if="!name" href='#!sign-in'><button type='button' class='btn btn-outline-light me-2'>Sign-in</button></a>
                     <a ng-if="!name" href='#!sign-up'><button type='button' class='btn btn-warning'>Sign-up</button></a>
