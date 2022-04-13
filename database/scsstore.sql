@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2022 at 10:56 PM
+-- Generation Time: Apr 13, 2022 at 11:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -57,7 +57,8 @@ INSERT INTO `orders` (`order_id`, `user_id`, `trip_id`, `date_issued`, `order_da
 (11, 12, NULL, '2022-04-12', '2022-04-14', '1000.00', NULL),
 (12, 13, NULL, '2022-04-12', '2022-04-13', '1000.00', NULL),
 (13, 12, NULL, '2022-04-12', '2022-04-14', '1329.00', NULL),
-(14, 13, NULL, '2022-04-12', '2022-04-13', '329.00', NULL);
+(14, 13, NULL, '2022-04-12', '2022-04-13', '329.00', NULL),
+(15, 14, NULL, '2022-04-13', '2022-04-13', '1978.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,11 +110,13 @@ CREATE TABLE `productorder` (
 --
 
 INSERT INTO `productorder` (`product_id`, `order_id`) VALUES
+(1, 15),
 (2, 13),
 (2, 14),
 (3, 11),
 (3, 12),
-(3, 13);
+(3, 13),
+(5, 15);
 
 -- --------------------------------------------------------
 
@@ -136,7 +139,23 @@ INSERT INTO `review` (`review_id`, `product_id`, `text`, `stars`) VALUES
 (1, 1, 'The iPhone 11 delivers superb cameras, fast performance and excellent battery life, making it the iPhone to buy for many people, especially after Apple cut the price once again.', 4),
 (2, 2, 'If you are an iPhone user and have been toying with the idea of going true wireless with your earbuds, then the Apple AirPods Pro are a great choice. The new noise-cancelling feature is neat and useful, and the overall improvements to sound and design could not be more welcome – though, they are quite pricey.', 5),
 (3, 1, 'The iPhone 11 - the successor to the iPhone XR - has gone from secondary handset to firmly taking the limelight. Offering most of the top-end camera technology of the powerful iPhone 11 Pro, it packs good spec and manages to do so for a lower cost than many would expect - this is the one to go for if you want a good value new iPhone.', 5),
-(9, 4, 'The Beats by Dre Studio3 Wireless is a great gadget, but was hard to justify for the original $345 price tag. ', 3);
+(9, 4, 'The Beats by Dre Studio3 Wireless is a great gadget, but was hard to justify for the original $345 price tag. ', 3),
+(12, 8, 'The Google Pixel 6 delivers the best Android experience for the money with superb cameras, smart photo editing features and new Google Assistant powers in Android 12, but the battery life could be better.', 4),
+(13, 5, 'The MacBook Air now has the speed and battery life to beat the best PCs.', 4),
+(14, 5, 'This laptop is probably the best I’ve ever had!', 5),
+(15, 12, 'The new iPad Pro 12.9-inch for 2021 is the best tablet money can buy, with top-end power, a fantastic display, a whole host of new smaller upgrades and an all-round experience that makes it a must-have for both Apple fans and those who want an unrivaled tablet experience. It isn’t for everyone though, on account of its large size and high price tag, and you may be better served by another more portable and affordable tablet, but make no mistake: this is the best of the best.', 4),
+(16, 11, 'The Microsoft Surface Pro 7 improves on its predecessor with stronger performance and better ports, but its battery life is disappointing.', 3),
+(18, 3, 'Pocket-Friendly Phone Has Great Cameras, Mediocre Battery Life.', 3),
+(19, 7, 'The best mirrorless cameras for photographers of all types, experience levels, and budgets.', 5),
+(20, 9, 'This laptop is probably the best I’ve ever had!', 5),
+(21, 6, 'Reviews of the iPad mini have been very positive, praising the slimmer bezels, a USB-C port, a Touch ID power button, a 12-megapixel rear Wide camera, and second-generation Apple Pencil compatibility.', 5),
+(22, 10, 'Keep in mind that while the Paperwhite starts at $149.99, like most Amazon ebook readers, it shows ads on the lock screen by default. If you want to get rid of those ads, you need to pay an extra $20.', 2),
+(23, 1, 'This phone is probably the best I’ve ever had!', 4),
+(24, 12, 'Apple always makes the best tablets!', 5),
+(25, 11, 'Thin, fast and light. The only thing it is missing is better battery life.', 4),
+(27, 3, 'Samsung is the best', 4),
+(28, 6, 'The iPad mini is the small-but-powerful iPad we needed.', 4),
+(29, 3, 'The Galaxy S22 feature modest, if not earth-shattering improvements, from the Galaxy S21. It is the Samsung phone to get if you want premium features for $1000.', 4);
 
 -- --------------------------------------------------------
 
@@ -178,7 +197,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `name`, `tel_no`, `email`, `address`, `city_code`, `login_id`, `password_hash`, `salt`, `balance`) VALUES
 (12, 'Mike James', '416-111-1112', 'DSDDSSD@gmail.com', '55 Bay Street', 'TO', NULL, '44e23312686986fb9b4ae258f08ad50c', 'Yq07z7KHL4rwFblgMsQd', NULL),
-(13, 'Admin', '416-000-0000', 'admin@gmail.com', '5 Street East', 'TO', NULL, 'fb3e41164b2733880f36dbb7a2d78794', 'fcSXQzEkH7iBmHsG3c1Q', NULL);
+(13, 'Admin', '416-000-0000', 'admin@gmail.com', '5 Street East', 'TO', NULL, 'fb3e41164b2733880f36dbb7a2d78794', 'fcSXQzEkH7iBmHsG3c1Q', NULL),
+(14, 'John', '416-000-0000', 'john@gmail.com', '5 Street East', 'TO', NULL, 'a38285b03dd6c031485e990e22d3e1f5', 'ajN2jQaJO2Rhb9cOapOR', NULL);
 
 --
 -- Indexes for dumped tables
@@ -244,7 +264,7 @@ ALTER TABLE `car`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -256,7 +276,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `trip`
@@ -268,7 +288,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
