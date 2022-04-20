@@ -12,7 +12,7 @@ class CartController
         $productcon = new ProductController($this->dbcon);
         $cart_products = array();
         if (isset($_SESSION['cart'])) {
-            $len = array_key_last($_SESSION['cart']);
+            $len = count($_SESSION['cart']);
             for ($i = 0; $i <= $len; $i++) {
                 if(isset($_SESSION['cart'][$i])) {
                     $result = $productcon->getProduct($_SESSION['cart'][$i]);
