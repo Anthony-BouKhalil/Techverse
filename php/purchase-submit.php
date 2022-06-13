@@ -14,7 +14,7 @@ if (isset($_SESSION['cart'])) {
     $result = $controller->createOrder($_SESSION['userId'], $post->checkout_data->date, $post->checkout_data->total_price);
     $order_id = $conn->insert_id;
     $_SESSION['lastOrder'] = $order_id;
-    $len = array_key_last($_SESSION['cart']);
+    $len = count($_SESSION['cart']);
     for ($i = 0; $i <= $len; $i++) {
         if(isset($_SESSION['cart'][$i])) {
             $controller->createProductOrder($_SESSION['cart'][$i], $order_id);
